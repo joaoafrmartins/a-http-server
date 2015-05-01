@@ -1,6 +1,4 @@
-{ resolve, join } = require 'path'
-
-{ readdirSync } = require 'fs'
+{ resolve } = require 'path'
 
 { waterfall } = require 'async'
 
@@ -52,7 +50,11 @@ module.exports = class Server
 
           catch err
 
-            component = require "#{process.env.PWD}/node_modules/#{name}"
+            component = require resolve(
+
+              "#{process.env.PWD}", "node_modules", "#{name}"
+
+            )
 
           load component
 
