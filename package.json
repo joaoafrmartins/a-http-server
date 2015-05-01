@@ -15,6 +15,7 @@
     "async": "",
     "express": "",
     "lodash.merge": "",
+    "a-npm-config": "",
     "a-http-server-plugin-shutdown": "",
     "a-http-server-plugin-console": "",
     "a-http-server-plugin-cors": "",

@@ -1,6 +1,14 @@
 #!/usr/bin/env coffee
 
-config = require('../lib/config')()
+{ resolve } = require 'path'
+
+config = require('a-npm-config')(
+
+  resolve(__dirname, '..', 'default', 'config'),
+
+  ['plugins', 'components']
+
+)
 
 Server = require '../lib/server'
 
