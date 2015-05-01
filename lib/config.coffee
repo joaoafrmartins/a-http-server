@@ -46,4 +46,6 @@ module.exports = () ->
 
             config[type] = value
 
+    config.kill ?= ["SIGTERM", "SIGINT", "SIGUSR2"]
+
     return config

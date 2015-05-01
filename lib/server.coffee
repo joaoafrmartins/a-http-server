@@ -14,8 +14,6 @@ module.exports = class Server
 
     if config is undefined then config = require('./config')()
 
-    console.log config
-
     Object.defineProperty @, "app", value: express()
 
     Object.defineProperty @, "config", value: config
@@ -40,4 +38,4 @@ module.exports = class Server
 
         next err, @
 
-    catch err then console.error err.message
+    catch err then console.error err.message, err.stack
