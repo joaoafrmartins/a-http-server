@@ -14,24 +14,11 @@
   "dependencies": {
     "async": "",
     "express": "",
-    "a-http-server-component-hello-world": "",
+    "lodash.merge": "",
     "a-http-server-plugin-shutdown": "",
     "a-http-server-plugin-console": "",
     "a-http-server-plugin-cors": "",
     "a-http-server-plugin-session": ""
-  },
-  "config": {
-    "port": 3000,
-    "kill": ["SIGTERM", "SIGINT", "SIGUSR2"],
-    "components": {
-      "a-http-server-component-hello-world": true
-    },
-    "plugins": {
-      "a-http-server-plugin-shutdown": true,
-      "a-http-server-plugin-console": true,
-      "a-http-server-plugin-cors": true,
-      "a-http-server-plugin-session": true
-    }
   },
   "scripts": {
     "start": "bin/server"

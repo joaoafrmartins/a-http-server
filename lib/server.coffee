@@ -22,6 +22,14 @@ module.exports = class Server
 
     try
 
+      load = (middlware) =>
+
+        if typeof middlware is "function"
+
+          @app.use middlware @
+
+        else throw new Error "invalid component: #{middlware}"
+
       Object.keys(config.plugins or {}).map (plugin) =>
 
         plugin = require plugin
@@ -30,11 +38,17 @@ module.exports = class Server
 
       waterfall plugins, (err) =>
 
-        Object.keys(config.components or {}).map (component) =>
+        Object.keys(config.components or {}).map (name) =>
 
-          component = require component
+          try
 
-          @app.use component @
+            component = require name
+
+          catch err
+
+            component = require "#{process.env.PWD}/node_modules/#{name}"
+
+          load component
 
         next err, @
 

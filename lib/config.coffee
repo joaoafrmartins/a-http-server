@@ -1,16 +1,14 @@
+merge = require 'lodash.merge'
+
+config = require '../default/config'
+
 module.exports = () ->
 
   try
 
-    return require "#{process.env.PWD}/config"
+    return merge config, require "#{process.env.PWD}/config"
 
   catch err
-
-    config =
-
-      plugins: {}
-
-      components: {}
 
     Object.keys(process.env).map (key) ->
 
@@ -20,7 +18,7 @@ module.exports = () ->
 
         key = key.replace(/^npm_package_config_/, '').split "_"
 
-        if key[key.length - 1].match(/[0-9]+$/) isnt null
+        if key[key.length-1].match(/[0-9]+$/) isnt null
 
           type = key.shift()
 
@@ -46,6 +44,4 @@ module.exports = () ->
 
             config[type] = value
 
-    config.kill ?= ["SIGTERM", "SIGINT", "SIGUSR2"]
-
-    return config
+    return merge config
