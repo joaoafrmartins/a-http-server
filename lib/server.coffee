@@ -62,6 +62,8 @@ module.exports = class Server
 
             load component
 
+        process.emit "a-http-server:started"
+
         next err, @
 
     catch err then console.error err.message, err.stack
