@@ -2,6 +2,9 @@
   "name": "a-http-server",
   "version": "0.0.0",
   "main": "lib",
+  "bin": {
+    "a-http-server": "bin/server"
+  },
   "description": "A Http Server",
   "keywords": [
     "a",
@@ -16,6 +19,22 @@
     "a-http-server-plugin-console": "",
     "a-http-server-plugin-cors": "",
     "a-http-server-plugin-session": ""
+  },
+  "config": {
+    "port": 3000,
+    "kill": ["SIGTERM", "SIGINT", "SIGUSR2"],
+    "components": {
+      "a-http-server-component-hello-world": true
+    },
+    "plugins": {
+      "a-http-server-plugin-shutdown": true,
+      "a-http-server-plugin-console": true,
+      "a-http-server-plugin-cors": true,
+      "a-http-server-plugin-session": true
+    }
+  },
+  "scripts": {
+    "start": "bin/server"
   },
   "devDependencies": {},
   "homepage": "https://github.com/joaoafrmartins/a-http-server",

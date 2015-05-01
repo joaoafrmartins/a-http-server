@@ -12,7 +12,9 @@ module.exports = class Server
 
     plugins = []
 
-    if config is undefined then config = require './config'
+    if config is undefined then config = require('./config')()
+
+    console.log config
 
     Object.defineProperty @, "app", value: express()
 

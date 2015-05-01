@@ -1,0 +1,17 @@
+#!/usr/bin/env coffee
+
+config = require('../lib/config')()
+
+Server = require '../lib/server'
+
+new Server (err, server) ->
+
+  shutdown = server.shutdown or () ->
+
+    process.exit 0
+
+  config.kill.map (signal) ->
+
+    process.on signal, shutdown
+
+, config
