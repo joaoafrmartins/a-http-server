@@ -1,0 +1,4 @@
+127.0.0.1 - - [01/May/2015:15:21:15 +0000] "GET / HTTP/1.1" 404 13 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36"
+127.0.0.1 - - [01/May/2015:15:21:15 +0000] "GET /favicon.ico HTTP/1.1" 404 24 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36"
+127.0.0.1 - - [01/May/2015:15:21:24 +0000] "GET /hello HTTP/1.1" 200 - "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36"
+info - Fri May 01 2015 16:21:50 GMT+0100 (WEST) - shutdown

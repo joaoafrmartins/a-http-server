@@ -1,0 +1,29 @@
+{
+  "name": "a-http-server",
+  "version": "0.0.0",
+  "main": "lib",
+  "description": "A Http Server",
+  "keywords": [
+    "a",
+    "http",
+    "server"
+  ],
+  "dependencies": {
+    "async": "",
+    "express": "",
+    "a-http-server-component-hello-world": "",
+    "a-http-server-plugin-shutdown": "",
+    "a-http-server-plugin-console": "",
+    "a-http-server-plugin-cors": "",
+    "a-http-server-plugin-session": ""
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/joaoafrmartins/a-http-server",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joaoafrmartins/a-http-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joaoafrmartins/a-http-server/issues"
+  }
+}
