@@ -36,27 +36,31 @@ module.exports = class Server
 
       Object.keys(config.plugins or {}).map (plugin) =>
 
-        plugin = require plugin
+        if config.plugins[plugin]
 
-        plugins.push plugin.bind @
+          plugin = require plugin
+
+          plugins.push plugin.bind @
 
       waterfall plugins, (err) =>
 
         Object.keys(config.components or {}).map (name) =>
 
-          try
+          if config.components[name]
 
-            component = require name
+            try
 
-          catch err
+              component = require name
 
-            component = require resolve(
+            catch err
 
-              "#{process.env.PWD}", "node_modules", "#{name}"
+              component = require resolve(
 
-            )
+                "#{process.env.PWD}", "node_modules", "#{name}"
 
-          load component
+              )
+
+            load component
 
         next err, @
 
