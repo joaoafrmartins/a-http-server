@@ -2,13 +2,17 @@
 
 { resolve } = require 'path'
 
+{ exec } = require 'child_process'
+
 config = require('a-npm-config')(
 
-  resolve(__dirname, '..', 'default', 'config'),
+  resolve(__dirname, '..', 'lib', 'config'),
 
-  ['plugins', 'components']
+  ['plugins']
 
 )
+
+exec resolve __dirname, '..', 'scripts', 'start.sh'
 
 Server = require '../lib/server'
 
@@ -20,6 +24,10 @@ new Server (err, server) ->
 
   config.kill.map (signal) ->
 
-    process.on signal, shutdown
+    process.on signal, () ->
+
+      exec resolve __dirname, '..', 'scripts', 'stop.sh'
+
+      shutdown()
 
 , config

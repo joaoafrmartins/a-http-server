@@ -1,0 +1,6 @@
+[6281] 02 May 12:32:26.001 # User requested shutdown...
+[6281] 02 May 12:32:26.001 * Saving the final RDB snapshot before exiting.
+[6281] 02 May 12:32:26.054 * DB saved on disk
+[6281] 02 May 12:32:26.054 * Removing the pid file.
+[6281] 02 May 12:32:26.054 * Removing the unix socket file.
+[6281] 02 May 12:32:26.054 # Redis is now ready to exit, bye bye...

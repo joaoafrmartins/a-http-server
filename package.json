@@ -22,7 +22,7 @@
     "a-http-server-plugin-session": ""
   },
   "scripts": {
-    "start": "bin/server"
+    "start": "a-http-server"
   },
   "devDependencies": {},
   "homepage": "https://github.com/joaoafrmartins/a-http-server",

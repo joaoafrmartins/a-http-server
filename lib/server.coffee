@@ -12,7 +12,7 @@ module.exports = class Server
 
     if config is undefined then config = require('a-npm-config')(
 
-      resolve(__dirname, '..', 'default', 'config'),
+      resolve(__dirname, '.', 'config'),
 
       ['plugins', 'components']
 
