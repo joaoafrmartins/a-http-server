@@ -8,7 +8,7 @@ config = require('a-npm-config')(
 
   resolve(__dirname, '..', 'lib', 'config'),
 
-  ['plugins']
+  [ 'plugins', 'components']
 
 )
 
