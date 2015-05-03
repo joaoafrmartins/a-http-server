@@ -4,66 +4,91 @@
 
 express = require 'express'
 
+cookies = require 'cookie-parser'
+
+{ json, urlencoded } = require 'body-parser'
+
 module.exports = class Server
 
   constructor: (next, config) ->
 
-    plugins = []
-
-    if config is undefined then config = require('a-npm-config')(
+    config ?= require('a-npm-config')(
 
       resolve(__dirname, '.', 'config'),
 
-      ['plugins', 'components']
+      ['plugins', 'components', 'middleware']
 
     )
 
-    Object.defineProperty @, "app", value: express()
-
     Object.defineProperty @, "config", value: config
+
+    Object.defineProperty @, "app", value: express()
 
     Object.defineProperty @, "http", value: @app.listen @config.port
 
     try
 
-      load = (middlware) =>
+      @configure()
 
-        if typeof middlware is "function"
+      waterfall @getPlugins(), (err) =>
 
-          @app.use middlware @
-
-        else throw new Error "invalid component: #{middlware}"
-
-      Object.keys(config.plugins or {}).map (plugin) =>
-
-        if config.plugins[plugin]
-
-          plugin = require plugin
-
-          plugins.push plugin.bind @
-
-      waterfall plugins, (err) =>
-
-        Object.keys(config.components or {}).map (name) =>
-
-          if config.components[name]
-
-            try
-
-              component = require name
-
-            catch err
-
-              component = require resolve(
-
-                "#{process.env.PWD}", "node_modules", "#{name}"
-
-              )
-
-            load component
-
-        process.emit "a-http-server:started"
+        @loadComponents()
 
         next err, @
 
     catch err then console.error err.message, err.stack
+
+  configure: () =>
+
+    options = @config.middleware
+
+    @app.use json options.json
+
+    @app.use urlencoded options.urlencoded
+
+    @app.use cookies options.cookies.secret, options.cookies.options
+
+  loadComponent: (middleware) =>
+
+    if typeof middleware is "function"
+
+      @app.use middleware @
+
+    else throw new Error "invalid component: #{middlware}"
+
+
+  loadComponents: () =>
+
+    Object.keys(@config.components or {}).map (name) =>
+
+      if @config.components[name]
+
+        try
+
+          component = require name
+
+        catch err
+
+          component = require resolve(
+
+            "#{process.env.PWD}", "node_modules", "#{name}"
+
+          )
+
+        @loadComponent component
+
+    process.emit "a-http-server:started"
+
+  getPlugins: () =>
+
+    plugins = []
+
+    Object.keys(@config.plugins or {}).map (plugin) =>
+
+      if @config.plugins[plugin]
+
+        plugin = require plugin
+
+        plugins.push plugin.bind @
+
+    plugins
