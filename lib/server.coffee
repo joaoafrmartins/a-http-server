@@ -34,6 +34,8 @@ module.exports = class Server
 
         @loadComponents()
 
+        process.emit "a-http-server:started"
+
         next err, @
 
     catch err then console.error err.message, err.stack
@@ -56,7 +58,6 @@ module.exports = class Server
 
     else throw new Error "invalid component: #{middlware}"
 
-
   loadComponents: () =>
 
     Object.keys(@config.components or {}).map (name) =>
@@ -77,17 +78,25 @@ module.exports = class Server
 
         @loadComponent component
 
-    process.emit "a-http-server:started"
-
   getPlugins: () =>
 
     plugins = []
 
-    Object.keys(@config.plugins or {}).map (plugin) =>
+    Object.keys(@config.plugins or {}).map (name) =>
 
-      if @config.plugins[plugin]
+      if @config.plugins[name]
 
-        plugin = require plugin
+        try
+
+          plugin = require name
+
+        catch err
+
+          plugin = require resolve(
+
+            "#{process.env.PWD}", "node_modules", "#{name}"
+
+          )
 
         plugins.push plugin.bind @
 
