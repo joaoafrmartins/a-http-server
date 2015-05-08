@@ -18,6 +18,7 @@
     "cookie-parser": "",
     "lodash.merge": "",
     "a-npm-config": "",
+    "a-http-server-plugin-error": "",
     "a-http-server-plugin-shutdown": "",
     "a-http-server-plugin-console": "",
     "a-http-server-plugin-cors": "",
@@ -34,5 +35,7 @@
   },
   "bugs": {
     "url": "https://github.com/joaoafrmartins/a-http-server/issues"
-  }
+  },
+  "author": "João Afonso Martins",
+  "license": "MIT"
 }

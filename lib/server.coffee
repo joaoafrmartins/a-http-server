@@ -20,9 +20,9 @@ module.exports = class Server
 
     )
 
-    Object.defineProperty @, "config", value: config
-
     Object.defineProperty @, "app", value: express()
+
+    Object.defineProperty @, "config", value: config
 
     Object.defineProperty @, "http", value: @app.listen @config.port
 

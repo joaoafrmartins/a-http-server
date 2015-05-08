@@ -8,9 +8,10 @@ module.exports =
   ]
   'components': {}
   'plugins':
+    'a-http-server-plugin-error': true
     'a-http-server-plugin-shutdown': true
     'a-http-server-plugin-console': true
-    'a-http-server-plugin-cors': true,
+    'a-http-server-plugin-cors': true
     'a-http-server-plugin-session': true
   'middleware':
     'json':
