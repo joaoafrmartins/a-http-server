@@ -50,11 +50,11 @@ module.exports = class Server
 
     @app.use cookies options.cookies.secret, options.cookies.options
 
-  loadComponent: (middleware) =>
+  loadComponent: (Component) =>
 
-    if typeof middleware is "function"
+    if typeof Component is "function"
 
-      @app.use middleware @
+      @app.use new Component @
 
     else throw new Error "invalid component: #{middlware}"
 
