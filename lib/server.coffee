@@ -26,6 +26,8 @@ module.exports = class Server
 
     Object.defineProperty @, "http", value: @app.listen @config.port
 
+    Object.defineProperty @, "static", value: express.static
+
     try
 
       @configure()
